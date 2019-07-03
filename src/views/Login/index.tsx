@@ -114,6 +114,7 @@ class Login extends Vue {
                   />
                   <a-form-item>
                     {getFieldDecorator('username', {
+                      initialValue: this.loginForm.username,
                       rules: [{ required: true, message: '请输入你的账号' }]
                     })(
                       <a-input size="large" placeholder="请输入账号">
@@ -123,6 +124,7 @@ class Login extends Vue {
                   </a-form-item>
                   <a-form-item>
                     {getFieldDecorator('password', {
+                      initialValue: this.loginForm.password,
                       rules: [{ required: true, message: '请输入密码' }]
                     })(
                       <a-input

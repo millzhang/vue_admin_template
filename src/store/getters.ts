@@ -6,5 +6,6 @@
 */
 const getters = {
   sidebar: (state: any) => state.app.sidebar,
+  spinning: (state: any) => state.user.spinning
 };
 export default getters;

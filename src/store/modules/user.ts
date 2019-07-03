@@ -38,7 +38,8 @@ const hasPermission = (permission: string[]) => { // 过滤路由
 export default {
   state: {
     user: {},
-    roles: []
+    roles: [],
+    spinning: false
   },
   mutations: {
     SAVEROLES: (state: any, roles: Array<any>) => {
@@ -46,6 +47,9 @@ export default {
     },
     SAVE_USERINFO(state: any, userdata: object) {
       state.user = userdata
+    },
+    SPINNING(state: any, loading: boolean) {
+      state.spinning = loading;
     }
   },
   actions: {
@@ -53,6 +57,8 @@ export default {
       return new Promise((resolve, reject) => {
         // do some fetch
         let token = userToken().get()
+        console.log(token)
+        context.commit('SPINNING', false);
         // 此处应有服务端返回
         let userData = { name: 'admin' }
         // let permissions = []

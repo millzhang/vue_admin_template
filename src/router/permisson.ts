@@ -13,6 +13,7 @@ let flag: boolean = true;
 // 跳过验证的白名单
 const WHITE_LIST = ['/login']
 router.beforeEach((to, from, next) => {
+  document.title = `${to.meta.name ? to.meta.name : to.name} - VUE-ADMIN`
   if (userToken().get()) {
     if (!store.state.app.menuData.length && flag) { // 判断是否获取到菜单数据,并且只执行一次
       flag = false;
