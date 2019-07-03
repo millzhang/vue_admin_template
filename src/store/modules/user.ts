@@ -4,7 +4,7 @@
  *@date: 2019-06-21 18:35:37
  *@description:   用户状态管理
 */
-import { getToken } from '@/assets/utils'
+import { userToken } from '@/assets/utils'
 import router, { asyncRouterMap, constantRouterMap } from '@/router';
 import { routerItem } from '@/interface';
 
@@ -52,7 +52,7 @@ export default {
     getUserInfo: (context: any) => {
       return new Promise((resolve, reject) => {
         // do some fetch
-        let token = getToken()
+        let token = userToken().get()
         // 此处应有服务端返回
         let userData = { name: 'admin' }
         // let permissions = []

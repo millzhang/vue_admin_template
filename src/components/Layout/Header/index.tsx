@@ -9,7 +9,7 @@ import {
 } from 'ant-design-vue';
 import { routeToArray } from '@/assets/utils';
 import { routerItem } from '@/interface';
-import { userLogout } from '@/assets/utils';
+import { userToken } from '@/assets/utils';
 
 interface breadItem {
   url: string;
@@ -55,9 +55,16 @@ export default class Header extends Vue {
   routerBread(data: routerItem[], toDepth: string[]) {
     data.map((item: routerItem) => {
       if (item.path === toDepth[this.onIndex]) {
+        if (item.meta && item.meta.parent) {
+          // 含有parent先push parent
+          this.breadList.push({
+            url: item.meta.parent.path,
+            text: item.meta.parent.name ? item.meta.parent.name : ''
+          });
+        }
         this.breadList.push({
           url: item.path,
-          text: item.name ? item.name : ''
+          text: item.meta.name ? item.meta.name : ''
         });
         if (item.children && toDepth.length - 1 >= this.onIndex) {
           this.onIndex += 1;
@@ -83,7 +90,7 @@ export default class Header extends Vue {
       case '2':
         break;
       case '3':
-        userLogout();
+        userToken().remove();
         this.$router.push('/login');
         break;
       default:
@@ -106,8 +113,10 @@ export default class Header extends Vue {
           />
           <a-breadcrumb class="header-bread" separator="/">
             {this.breadList.map((item: breadItem) => (
-              <a-breadcrumb-item to={item.url ? { path: '/' } : null}>
-                {item.text}
+              <a-breadcrumb-item>
+                <router-link to={item.url ? item.url : null}>
+                  {item.text}
+                </router-link>
               </a-breadcrumb-item>
             ))}
           </a-breadcrumb>

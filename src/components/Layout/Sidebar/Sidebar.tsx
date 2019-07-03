@@ -11,8 +11,8 @@ export default class SiderBar extends Vue {
     return (
       <div class="side-bar">
         <div class="logo-wrap">
-          <img src={require('@/assets/images/logo.png')} alt="logo" />
-          {/* <h1 className="txt">{config.name}</h1> */}
+          {/* <img src={require('@/assets/images/logo.png')} alt="logo" /> */}
+          {/* <h1 class="txt">vue-admin</h1> */}
         </div>
         <MenuList />
       </div>

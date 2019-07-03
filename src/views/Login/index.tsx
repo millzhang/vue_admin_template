@@ -7,10 +7,11 @@ import {
   Icon,
   Row,
   Col,
-  Alert
+  Alert,
+  Checkbox
 } from 'ant-design-vue';
 import '@/assets/styles/login.scss';
-import { userLogin } from '@/assets/utils';
+import { userToken, userCache } from '@/assets/utils';
 
 @Component({
   components: {
@@ -23,7 +24,8 @@ import { userLogin } from '@/assets/utils';
     'a-icon': Icon,
     'a-row': Row,
     'a-col': Col,
-    'a-alert': Alert
+    'a-alert': Alert,
+    'a-checkbox': Checkbox
   },
   props: {
     Form
@@ -31,6 +33,7 @@ import { userLogin } from '@/assets/utils';
 })
 class Login extends Vue {
   // DATA
+  remember: boolean = true;
   loginForm: {
     username: string;
     password: string;
@@ -38,11 +41,24 @@ class Login extends Vue {
   logging: boolean = false;
   error: string = '';
 
+  mounted() {
+    let hasCacheUser = userCache().get();
+    if (hasCacheUser) {
+      this.remember = true;
+      this.loginForm = hasCacheUser;
+    }
+  }
+
   fetchLogin(values: object) {
     // to fetch login TODO
     return new Promise((resolve, reject) => {
       resolve(true);
     });
+  }
+
+  @Emit()
+  handelAutoLogin(e: any) {
+    this.remember = e.target.checked;
   }
 
   @Emit()
@@ -54,7 +70,12 @@ class Login extends Vue {
         this.fetchLogin({ ...values }).then(res => {
           if (res) {
             this.logging = false;
-            userLogin();
+            userToken().set(Date.now().toString());
+            if (this.remember) {
+              userCache().set({ ...values });
+            } else {
+              userCache().remove();
+            }
             this.$store.dispatch('getUserInfo').then(() => {
               this.$router.push('/');
             });
@@ -72,7 +93,7 @@ class Login extends Vue {
           <div class="top">
             <div class="header">
               {/* <img alt="logo" class="logo" src="../../assets/images/logo.png" /> */}
-              <span class="title">Vue Admin</span>
+              <span class="title">Vue TS Admin</span>
             </div>
             <div class="desc">后台管理系统模板</div>
           </div>
@@ -141,10 +162,15 @@ class Login extends Vue {
                   </a-form-item>
                 </a-tabs-pane>
               </a-tabs>
-              {/* <div>
-              <a-checkbox checked="true">自动登录</a-checkbox>
-              <a style="float: right">忘记密码</a>
-            </div> */}
+              <div>
+                <a-checkbox
+                  on-change={this.handelAutoLogin}
+                  checked={this.remember}
+                >
+                  自动登录
+                </a-checkbox>
+                {/* <a style="float: right">忘记密码</a> */}
+              </div>
               <a-form-item>
                 <a-button
                   loading={this.logging}

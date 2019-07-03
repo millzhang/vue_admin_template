@@ -20,6 +20,10 @@ export default class MenuList extends Vue {
   @Watch('$route', { immediate: true, deep: true })
   routeChange(to: any, from: any) {
     this.keys = routeToArray(to.path).routeArr;
+    if (to.meta.parent) {
+      // 处理有parent的隐藏子菜单
+      this.keys.push(to.meta.parent.path);
+    }
     const open = this.keys.concat();
     open.pop();
     this.openKeys = open || [];
@@ -75,7 +79,7 @@ export default class MenuList extends Vue {
           return (
             <a-menu-item id={item.path} key={`${item.path}`}>
               <a-icon type={item.icon} />
-              <span>{item.name}</span>
+              <span>{item.meta.name}</span>
             </a-menu-item>
           );
         }
@@ -83,7 +87,7 @@ export default class MenuList extends Vue {
           <a-submenu id={item.path} key={item.path}>
             <template slot="title">
               <a-icon type={item.icon} />
-              <span>{item.name}</span>
+              <span>{item.meta.name}</span>
             </template>
             {this.renderMenu(
               item.children,
@@ -98,7 +102,7 @@ export default class MenuList extends Vue {
       return (
         <a-menu-item id={item.path} key={`${item.path}`}>
           {item.icon ? <a-icon type={item.icon} /> : ''}
-          <span>{item.name}</span>
+          <span>{item.meta.name}</span>
         </a-menu-item>
       );
     });

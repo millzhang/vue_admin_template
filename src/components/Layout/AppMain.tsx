@@ -35,7 +35,7 @@ export default class AppMain extends Vue {
         <Sidebar />
         <div class="page-content">
           <Header />
-          <div className="page-wrap">
+          <div class="page-wrap">
             <router-view />
           </div>
         </div>

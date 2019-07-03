@@ -7,13 +7,13 @@
 
 import router from './index'
 import store from '@/store'
-import { getToken } from '@/assets/utils'
+import { userToken } from '@/assets/utils'
 
 let flag: boolean = true;
 // 跳过验证的白名单
 const WHITE_LIST = ['/login']
 router.beforeEach((to, from, next) => {
-  if (getToken()) {
+  if (userToken().get()) {
     if (!store.state.app.menuData.length && flag) { // 判断是否获取到菜单数据,并且只执行一次
       flag = false;
       store.dispatch('getUserInfo').then(() => {

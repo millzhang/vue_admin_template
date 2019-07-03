@@ -1,11 +1,23 @@
+/*
+ *@version: v0.0.1
+ *@author: yckj0881
+ *@date: 2019-07-03 09:52:42
+ *@description:Dashboard
+ */
 import { Vue, Component } from 'vue-property-decorator';
-
-@Component({})
+import { Card } from 'ant-design-vue';
+@Component({
+  components: {
+    'a-card': Card
+  }
+})
 export default class Dashboard extends Vue {
   render() {
     return (
-      <div class="dash-container">
-        <h1>Dashboard</h1>
+      <div class="container">
+        <a-card class="cardbox">
+          <h1>Dashboard</h1>
+        </a-card>
       </div>
     );
   }
