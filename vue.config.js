@@ -8,6 +8,26 @@ module.exports = {
       .use('vue-jsx-hot-loader')
       .before('babel-loader')
       .loader('vue-jsx-hot-loader');
+    const svgRule = config.module.rule('svg');
+    svgRule.uses.clear();
+
+    svgRule
+      .use('babel-loader')
+      .loader('babel-loader')
+      .end()
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader')
+      .options({
+        svgo: {
+          plugins: [
+            { removeDoctype: true },
+            { removeComments: true },
+            { removeViewBox: false }
+          ],
+          removeViewBox: false
+        }
+      })
+      .end();
     config.plugin('html').tap(args => {
       args[0].chunksSortMode = 'none';
       return args;

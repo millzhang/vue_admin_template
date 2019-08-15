@@ -10,6 +10,7 @@ import {
 import { routeToArray } from '@/assets/utils';
 import { routerItem } from '@/interface';
 import { userToken } from '@/assets/utils';
+import PowerIcon from '@/assets/icons/power.svg';
 
 interface breadItem {
   url: string;
@@ -36,6 +37,8 @@ export default class Header extends Vue {
   breadList: breadItem[] = [];
 
   onIndex: number = 0;
+
+  now: string = '';
 
   @Watch('$route', { immediate: true, deep: true })
   routeChange(to: any, from: any) {
@@ -81,21 +84,22 @@ export default class Header extends Vue {
     this.$store.dispatch('ToggleSideBar');
   }
   @Emit()
-  menuClick(params: { item: any; key: string; keyPath: string[] }): void {
-    // 点击菜单
-    const self = this;
-    switch (params.key) {
-      case '1':
-        break;
-      case '2':
-        break;
-      case '3':
-        userToken().remove();
+  handleLogout(): void {
+    this.$confirm({
+      title: '温馨提示',
+      content: '您是否确认退出系统？',
+      okText: '确认',
+      cancelText: '取消',
+      onOk: () => {
+        this.$utils.userToken().remove();
         this.$router.push('/login');
-        break;
-      default:
-        break;
-    }
+      }
+    });
+  }
+  getNowTime() {
+    let timer = setInterval(() => {
+      this.now = this.$utils.parseDate(new Date());
+    }, 1000);
   }
   render() {
     const {
@@ -104,6 +108,7 @@ export default class Header extends Vue {
       isMobile
     } = this.$store.state.app;
     this.menuData = menuData;
+    this.getNowTime();
     return (
       <header class="header-wrap">
         <div class="header-left">
@@ -122,29 +127,16 @@ export default class Header extends Vue {
           </a-breadcrumb>
         </div>
         <ul class="header-menu">
-          {/* <li>
-            <a-badge count={12} class="item">
-              <i class="iconfont-email" />
-            </a-badge>
-          </li>
-          <li>
-            <i class="iconfont-bell" />
-          </li> */}
           <li class="user">
-            <a-dropdown>
-              <span class="ant-dropdown-link">
-                <a-icon type="user" />
-                <span class="name">admin</span>
-              </span>
-              <a-menu slot="overlay" on-click={this.menuClick}>
-                {/* <a-menu-item key="1">个人中心</a-menu-item>
-                <a-menu-item key="2">修改密码</a-menu-item>
-                <a-menu-divider /> */}
-                <a-menu-item key="3">
-                  <font color="red">退出登录</font>
-                </a-menu-item>
-              </a-menu>
-            </a-dropdown>
+            <a-icon type="user" />
+            <div class="info">
+              <span class="name">欢迎您，admin</span>
+              <span class="time">{this.now}</span>
+            </div>
+          </li>
+          <li class="logout" on-click={this.handleLogout}>
+            <a-icon component={PowerIcon} />
+            <span style="margin-left:5px;">安全退出</span>
           </li>
         </ul>
       </header>

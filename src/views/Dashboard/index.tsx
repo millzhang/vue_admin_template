@@ -14,10 +14,6 @@ import { Card } from 'ant-design-vue';
 export default class Dashboard extends Vue {
   created() {
     this.$message.success('Dashboard');
-    this.$notification.success({
-      message: 'Welcome',
-      description: ''
-    });
   }
   render() {
     return (

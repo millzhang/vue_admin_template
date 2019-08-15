@@ -33,9 +33,9 @@ $headerHeight: 56px;
     list-style: none;
     color: #666;
     li {
-      width: $headerHeight;
+      // width: $headerHeight;
       height: $headerHeight;
-      line-height: $headerHeight;
+      // line-height: $headerHeight;
       text-align: center;
       cursor: pointer;
       .el-badge__content.is-fixed {
@@ -43,7 +43,7 @@ $headerHeight: 56px;
       }
       &:hover {
         color: $primary-color;
-        background-color: lighten($primary-color, 25%);
+        // background-color: lighten($primary-color, 25%);
         .el-dropdown-link {
           color: $primary-color;
         }
@@ -51,14 +51,36 @@ $headerHeight: 56px;
       &.user {
         width: auto;
         padding: 0 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .info {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          margin-left: 20px;
+          font-size: 12px;
+        }
         .ant-dropdown-link {
           height: 56px;
           display: block;
         }
         .name {
-          margin-left: 10px;
           font-size: 14px;
           font-weight: 400;
+        }
+      }
+      &.logout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 20px 0 0;
+        &:before {
+          content: '';
+          height: 40%;
+          border-left: 1px solid #666;
+          margin-right: 20px;
         }
       }
     }
@@ -168,8 +190,6 @@ $headerHeight: 56px;
     text-align: center;
     padding: 20px 0;
     img {
-      width: 160px;
-      height: 32px;
       display: inline;
       margin-left: 10px;
     }

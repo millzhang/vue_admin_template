@@ -35,6 +35,7 @@
     "vue-class-component": "^7.1.0",
     "vue-jsx-hot-loader": "^1.4.1",
     "vue-property-decorator": "^8.2.1",
+    "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

@@ -114,3 +114,10 @@ export function parseDate(value: any, fmt: string = 'yyyy-MM-dd hh:mm:ss') {
       )
   return fmt
 }
+
+export interface UtilInterface {
+  routeToArray: Function,
+  userCache: Function,
+  userToken: Function,
+  parseDate: Function
+}
