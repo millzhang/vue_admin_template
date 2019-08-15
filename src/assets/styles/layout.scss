@@ -225,3 +225,33 @@ $headerHeight: 56px;
 .ml20 {
   margin-left: 20px;
 }
+
+//通用弹框组件
+.vat-dialog {
+  &.full {
+    position: absolute;
+    left: 207px;
+    top: 63px;
+    height: calc(100% - 70px);
+    width: calc(100% - 207px);
+    .ant-modal {
+      width: 100% !important;
+      top: 0;
+      height: 100%;
+      padding-bottom: 0;
+    }
+    .ant-modal-content {
+      height: 100%;
+      right: 7px;
+    }
+    .ant-modal-footer {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  }
+  &.wider {
+    left: 71px;
+    width: calc(100% - 71px);
+  }
+}

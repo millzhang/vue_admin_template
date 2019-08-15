@@ -8,7 +8,7 @@ import { menuItem, routerItem } from '@/interface';
 export default {
   state: {
     sidebar: {
-      opened: localStorage.getItem('sidebarStatus')
+      opened: localStorage.getItem('sidebarStatus') ? localStorage.getItem('sidebarStatus') : 1
     },
     theme: 'default',
     menuData: []

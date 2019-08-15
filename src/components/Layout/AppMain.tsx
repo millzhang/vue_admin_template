@@ -1,11 +1,4 @@
-import {
-  Component,
-  Prop,
-  Emit,
-  Vue,
-  Watch,
-  Provide
-} from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { Tabs } from 'ant-design-vue';
 import Sidebar from '@/components/Layout/Sidebar/Sidebar';
 import Header from '@/components/Layout/Header';
@@ -21,9 +14,9 @@ import '@/assets/styles/layout.scss';
 export default class AppMain extends Vue {
   render() {
     const {
-      sidebar: { opened = 1 }
+      sidebar: { opened }
     } = this.$store.state.app;
-    if (this.$route.meta.layout == 'no' || this.$route.path=== '/') {
+    if (this.$route.meta.layout == 'no' || this.$route.path === '/') {
       return (
         <div class="app-one">
           <router-view />
