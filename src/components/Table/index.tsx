@@ -5,16 +5,28 @@
  *@description:  Tabel Common组件
  */
 import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import { Button, Table } from 'ant-design-vue';
+import { ColumnFilterItem, Column } from 'ant-design-vue/types/table/column.d';
 import Service from '@/service';
+
+export interface ColumnFormatter {
+  title: string;
+  dataIndex?: string;
+  width?: number;
+  customRender?: Function;
+  scopedSlots?: object;
+  filters?: Array<ColumnFilterItem>;
+  onFilter?: Function;
+  sorter?: Function;
+  filterMultiple?: boolean;
+  render?: Function;
+}
+
 @Component({
-  name: 'CommonTable',
+  name: 'MilkTable',
   components: {
-    'a-table': Table,
-    'a-button': Button
   }
 })
-export default class CommonTable extends Vue {
+export default class MilkTable extends Vue {
   /**
    * 表格列配置项
    */
@@ -129,7 +141,7 @@ export default class CommonTable extends Vue {
     };
     return (
       <a-table
-        style="margin-top:20px;"
+        style='margin-top:20px;'
         rowKey={(record: any) => record.id}
         bordered
         columns={this.columns}

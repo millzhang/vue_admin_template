@@ -12,7 +12,7 @@ import { Modal } from 'ant-design-vue';
     'a-modal': Modal
   }
 })
-export default class Dialog extends Vue {
+export default class MilkDialog extends Vue {
   /**
    * 是否显示弹出层
    */

@@ -1,118 +1,88 @@
 import Vue from 'vue'
 import {
-  Affix,
-  Anchor,
-  AutoComplete,
   Alert,
-  Avatar,
-  BackTop,
-  Badge,
-  Breadcrumb,
   Button,
   Calendar,
   Card,
-  Collapse,
-  Carousel,
-  Cascader,
-  Checkbox,
   Col,
+  Collapse,
+  Checkbox,
   DatePicker,
-  Divider,
-  Dropdown,
   Form,
   Icon,
   Input,
   InputNumber,
-  Layout,
   List,
-  LocaleProvider,
   message,
-  Menu,
   Modal,
   notification,
   Pagination,
-  Popconfirm,
   Popover,
-  Progress,
   Radio,
-  Rate,
   Row,
+  Rate,
   Select,
-  Slider,
   Spin,
-  Steps,
-  Switch,
   Table,
-  Transfer,
-  Tree,
-  TreeSelect,
   Tabs,
-  Tag,
   TimePicker,
-  Timeline,
-  Tooltip,
-  // Mention,
-  Upload,
-  // version,
-  Drawer,
-  Skeleton
+  Tooltip
 } from 'ant-design-vue';
 
 
-
-Vue.use(Affix);
-Vue.use(Anchor);
-Vue.use(AutoComplete);
 Vue.use(Alert);
-Vue.use(Avatar);
-Vue.use(BackTop);
-Vue.use(Badge);
-Vue.use(Breadcrumb);
 Vue.use(Button);
 Vue.use(Calendar);
 Vue.use(Card);
 Vue.use(Collapse);
-Vue.use(Carousel);
-Vue.use(Cascader);
-Vue.use(Checkbox);
 Vue.use(Col);
+Vue.use(Checkbox);
 Vue.use(DatePicker);
-Vue.use(Divider);
-Vue.use(Drawer);
-Vue.use(Dropdown);
 Vue.use(Form);
 Vue.use(Icon);
 Vue.use(Input);
 Vue.use(InputNumber);
-Vue.use(Layout);
 Vue.use(List);
-Vue.use(LocaleProvider);
-Vue.use(Menu);
 Vue.use(Modal);
 Vue.use(Pagination);
-Vue.use(Popconfirm);
 Vue.use(Popover);
-Vue.use(Progress);
 Vue.use(Radio);
 Vue.use(Rate);
 Vue.use(Row);
 Vue.use(Select);
-Vue.use(Slider);
 Vue.use(Spin);
-Vue.use(Steps);
-Vue.use(Switch);
 Vue.use(Table);
-Vue.use(Transfer);
-Vue.use(Tree);
-Vue.use(TreeSelect);
 Vue.use(Tabs);
-Vue.use(Tag);
 Vue.use(TimePicker);
-Vue.use(Timeline);
 Vue.use(Tooltip);
-Vue.use(Upload);
-Vue.use(Skeleton);
 
+// Vue.use(Alert, 'a-alert');
+// Vue.use(Button, 'a-button');
+// Vue.use(Calendar, 'a-calendar');
+// Vue.use(Card, 'a-card');
+// Vue.use(Collapse, 'a-collapse');
+// Vue.use(Col, 'a-col');
+// Vue.use(Checkbox, 'a-checkbox');
+// Vue.use(DatePicker, 'a-datepicker');
+// Vue.use(Form, 'a-form');
+// Vue.use(Icon, 'a-icon');
+// Vue.use(Input, 'a-input');
+// Vue.use(List, 'a-list');
+// Vue.use(Modal, 'a-modal');
+// Vue.use(Pagination, 'a-pagination');
+// Vue.use(Popover, 'a-popover');
+// Vue.use(Radio, 'a-radio');
+// Vue.use(Rate, 'a-rate');
+// Vue.use(Row, 'a-row');
+// Vue.use(Select, 'a-select');
+// Vue.use(Spin, 'a-spin');
+// Vue.use(Table, 'a-table');
+// Vue.use(Tabs, 'a-tabs');
+// Vue.use(TimePicker, 'a-timepicker');
+// Vue.use(Tooltip, 'a-tooltip');
+
+
+Vue.component('a-tabs-pane', Tabs.TabPane)
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
 Vue.prototype.$info = Modal.info;

@@ -6,15 +6,8 @@
  */
 import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
 import {
-  Form,
-  Button,
-  Input,
-  InputNumber,
-  DatePicker,
-  Checkbox,
-  Select
+  Form
 } from 'ant-design-vue';
-import { FormDataSlot } from '@/interface';
 import moment from 'moment';
 
 export interface Col {
@@ -28,27 +21,122 @@ export interface FormLayoutSlot {
   button?: Col;
 }
 
+/**
+ * 通用表单的数据插槽
+ */
+export interface FormDataSlot {
+  /**
+   * Label
+   * @description form表单label标签
+   * @default ""
+   * @type string
+   */
+  label: string;
+
+  /**
+   * Key
+   * @description form表单输入框model值
+   * @default ""
+   * @type string
+   */
+  key: string;
+
+  /**
+   * Editable
+   * @description form表单输入框是否可编辑
+   * @default true
+   * @type boolean
+   */
+  editable?: boolean;
+
+  /**
+   * Width
+   * @description form表单输入框的宽度
+   * @default ""
+   * @type string
+   */
+  width?: string;
+
+  /**
+   * Type
+   * @description form表单类型
+   * @value text|select|datepicker|radio|checkbox|timepicker
+   * @type string
+   */
+  type: string;
+
+  /**
+   * Init
+   * @description 值域的初始值
+   * @default ""
+   * @type string
+   */
+  init?: any;
+
+  /**
+   * Rule
+   * 不填按常用的必填规则
+   * @description 校验规则
+   * @default []
+   * @type array
+   */
+  rule?: object[];
+
+  /**
+   * Validator
+   * 自定义校验规则
+   * @description 校验规则
+   * @default ''
+   * @type string
+   */
+  validator?: string;
+
+  /**
+   * ValidatorCompare
+   * 自定义比较校验规则
+   * @description 校验规则
+   * @default ''
+   * @type string
+   */
+  validatorCompare?: object;
+
+  /**
+   * ValidateMessage
+   * 校验信息
+   * @description 校验信息
+   * @default ''
+   * @type string
+   */
+  validateMessage?: string;
+
+  /**
+   * Options
+   * 选择列表渲染数据
+   * @description 该项需要渲染的数据列表
+   * @default []
+   * @type array
+   */
+  options?: object[];
+
+  /**
+   * Maxlength
+   * 选择列表渲染数据
+   * @description 该项需要渲染的数据列表
+   * @default []
+   * @type array
+   */
+  maxlength?: number;
+}
+
 @Component({
   name: 'CommonForm',
   components: {
-    'a-form': Form,
-    'a-input': Input,
-    'a-textarea': Input.TextArea,
-    'a-input-number': InputNumber,
-    'a-button': Button,
-    'a-form-item': Form.Item,
-    'a-date-picker': DatePicker,
-    'a-range-picker': DatePicker.RangePicker,
-    'a-checkbox': Checkbox,
-    'a-checkbox-group': Checkbox.Group,
-    'a-select': Select,
-    'a-select-option': Select.Option
   },
   props: {
     Form
   }
 })
-export class FormComponent extends Vue {
+export class MilkForm extends Vue {
   // 提交按钮加载
   @Prop({ default: false, type: Boolean })
   private submitLoading!: Boolean;
@@ -349,14 +437,14 @@ export class FormComponent extends Vue {
           {...(this.itemLayout.button ? { props: this.itemLayout.button } : '')}
         >
           <a-button
-            type="primary"
+            type='primary'
             loading={this.submitLoading}
             on-click={this.handleConfirm}
           >
             {this.type == 'filter' ? '查询' : '确定'}
           </a-button>
           {this.showCancel ? (
-            <a-button class="ml20" on-click={this.handleCancel}>
+            <a-button class='ml20' on-click={this.handleCancel}>
               {this.type == 'filter' ? '重置' : '取消'}
             </a-button>
           ) : (
@@ -402,4 +490,4 @@ export default Form.create({
     showCancel: Boolean,
     buttonWrap: Boolean
   }
-})(FormComponent);
+})(MilkForm);
