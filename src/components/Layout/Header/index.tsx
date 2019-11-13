@@ -1,12 +1,4 @@
 import { Component, Prop, Emit, Vue, Watch } from 'vue-property-decorator';
-import {
-  Badge,
-  Dropdown,
-  Breadcrumb,
-  Popover,
-  Icon,
-  Menu
-} from 'ant-design-vue';
 import { routeToArray } from '@/assets/utils';
 import { routerItem } from '@/interface';
 import { userToken } from '@/assets/utils';
@@ -19,15 +11,6 @@ interface breadItem {
 
 @Component({
   components: {
-    'a-badge': Badge,
-    'a-dropdown': Dropdown,
-    'a-menu-item': Menu.Item,
-    'a-breadcrumb': Breadcrumb,
-    'a-breadcrumb-item': Breadcrumb.Item,
-    'a-popover': Popover,
-    'a-icon': Icon,
-    'a-menu-divider': Menu.Divider,
-    'a-menu': Menu
   }
 })
 export default class Header extends Vue {

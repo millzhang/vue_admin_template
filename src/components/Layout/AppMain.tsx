@@ -1,5 +1,4 @@
 import { Component, Vue } from 'vue-property-decorator';
-import { Tabs } from 'ant-design-vue';
 import Sidebar from '@/components/Layout/Sidebar/Sidebar';
 import Header from '@/components/Layout/Header';
 
@@ -7,8 +6,6 @@ import '@/assets/styles/layout.scss';
 
 @Component({
   components: {
-    'a-tabs': Tabs,
-    'a-tab-pane': Tabs.TabPane
   }
 })
 export default class AppMain extends Vue {

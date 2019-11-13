@@ -1,15 +1,9 @@
 import { Component, Emit, Vue, Prop, Watch } from 'vue-property-decorator';
-import { Menu, Icon } from 'ant-design-vue';
 import { routeToArray } from '@/assets/utils';
 import { routerItem } from '@/interface';
 
 @Component({
   components: {
-    'a-menu': Menu,
-    'a-submenu': Menu.SubMenu,
-    'a-menu-item-group': Menu.ItemGroup,
-    'a-menu-item': Menu.Item,
-    'a-icon': Icon
   }
 })
 export default class MenuList extends Vue {

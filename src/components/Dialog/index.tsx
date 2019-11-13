@@ -5,11 +5,9 @@
  *@description:  通用弹出层组件
  */
 import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import { Modal } from 'ant-design-vue';
 
 @Component({
   components: {
-    'a-modal': Modal
   }
 })
 export default class MilkDialog extends Vue {

@@ -4,9 +4,9 @@
  *@date: 2019-07-10 10:24:04
  *@description:  Tabel Common组件
  */
-import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import { ColumnFilterItem, Column } from 'ant-design-vue/types/table/column.d';
-import Service from '@/service';
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+import { ColumnFilterItem, Column } from "ant-design-vue/types/table/column.d";
+import Service from "@/service";
 
 export interface ColumnFormatter {
   title: string;
@@ -22,9 +22,8 @@ export interface ColumnFormatter {
 }
 
 @Component({
-  name: 'MilkTable',
-  components: {
-  }
+  name: "MilkTable",
+  components: {}
 })
 export default class MilkTable extends Vue {
   /**
@@ -42,7 +41,7 @@ export default class MilkTable extends Vue {
   /**
    * 接口服务名称
    */
-  @Prop({ default: '', type: String })
+  @Prop({ default: "", type: String })
   private serviceName!: string;
 
   @Prop({ default: false, type: Boolean })
@@ -60,7 +59,7 @@ export default class MilkTable extends Vue {
       total: 0,
       showQuickJumper: true,
       showSizeChanger: true,
-      position: 'bottom',
+      position: "bottom",
       showTotal: (total: any, range: any[]) => {
         return `共计${total}条记录`;
       }
@@ -69,7 +68,7 @@ export default class MilkTable extends Vue {
   })
   private pagination!: any | boolean;
 
-  private tableData: any[] = [];
+  private tableData: any[] = [{}];
 
   private loading: Boolean = false;
 
@@ -79,13 +78,13 @@ export default class MilkTable extends Vue {
   handleTabelChange(pagination: any, filters: any, sorter: any) {
     this.pagination.current = pagination.current;
     this.pagination.pageSize = pagination.pageSize;
-    this.$emit('pageChange');
+    this.$emit("pageChange");
   }
 
   @Emit()
   rowsChange(selectedRowKeys: string[], rows: any[]) {
     this.selectedRowKeys = selectedRowKeys;
-    this.$emit('rowChange', rows);
+    this.$emit("rowChange", rows);
   }
 
   @Emit()
@@ -103,8 +102,8 @@ export default class MilkTable extends Vue {
         this.tableData = res.data.list;
         this.pagination.total = Number(res.data.total);
         this.selectedRowKeys = [];
-        this.$emit('rowChange', []);
-        this.$emit('loaded');
+        this.$emit("rowChange", []);
+        this.$emit("loaded");
       })
       .catch(() => {
         this.loading = false;
@@ -141,9 +140,10 @@ export default class MilkTable extends Vue {
     };
     return (
       <a-table
-        style='margin-top:20px;'
+        style="margin-top:20px;"
         rowKey={(record: any) => record.id}
         bordered
+        scroll={{ x: 100, y: 200 }}
         columns={this.columns}
         dataSource={this.tableData}
         pagination={this.pagination}

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import {
   Alert,
   Button,
+  Breadcrumb,
   Calendar,
   Card,
   Col,
@@ -15,6 +16,7 @@ import {
   List,
   message,
   Modal,
+  Menu,
   notification,
   Pagination,
   Popover,
@@ -44,6 +46,7 @@ Vue.use(Input);
 Vue.use(InputNumber);
 Vue.use(List);
 Vue.use(Modal);
+Vue.use(Menu);
 Vue.use(Pagination);
 Vue.use(Popover);
 Vue.use(Radio);
@@ -55,34 +58,12 @@ Vue.use(Table);
 Vue.use(Tabs);
 Vue.use(TimePicker);
 Vue.use(Tooltip);
-
-// Vue.use(Alert, 'a-alert');
-// Vue.use(Button, 'a-button');
-// Vue.use(Calendar, 'a-calendar');
-// Vue.use(Card, 'a-card');
-// Vue.use(Collapse, 'a-collapse');
-// Vue.use(Col, 'a-col');
-// Vue.use(Checkbox, 'a-checkbox');
-// Vue.use(DatePicker, 'a-datepicker');
-// Vue.use(Form, 'a-form');
-// Vue.use(Icon, 'a-icon');
-// Vue.use(Input, 'a-input');
-// Vue.use(List, 'a-list');
-// Vue.use(Modal, 'a-modal');
-// Vue.use(Pagination, 'a-pagination');
-// Vue.use(Popover, 'a-popover');
-// Vue.use(Radio, 'a-radio');
-// Vue.use(Rate, 'a-rate');
-// Vue.use(Row, 'a-row');
-// Vue.use(Select, 'a-select');
-// Vue.use(Spin, 'a-spin');
-// Vue.use(Table, 'a-table');
-// Vue.use(Tabs, 'a-tabs');
-// Vue.use(TimePicker, 'a-timepicker');
-// Vue.use(Tooltip, 'a-tooltip');
-
+Vue.use(Breadcrumb);
 
 Vue.component('a-tabs-pane', Tabs.TabPane)
+Vue.component('a-submenu', Menu.SubMenu)
+
+
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
 Vue.prototype.$info = Modal.info;
